@@ -1,0 +1,135 @@
+.cart-page {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.order-history {
+    width: 250px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.order-history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-history li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.cart-container {
+    flex: 1;
+}
+
+.cart-container h1 {
+    margin-bottom: 20px;
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.cart-item img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.quantity-controls button {
+    width: 30px;
+    height: 30px;
+}
+
+.remove-btn {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.success-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-content input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.payment-method {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}

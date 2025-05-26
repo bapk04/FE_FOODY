@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import MealCard from '../components/MealCard';
 import SearchBar from '../components/SearchBar';
 import FilterMenu from '../components/FilterMenu';
@@ -54,12 +55,17 @@ const Home = () => {
     };
 
     if (loading) {
-        return (
-            <div className="loading-container">
-                <p>Đang tải danh sách món ăn...</p>
-            </div>
-        );
-    }
+    return (
+        <motion.div 
+            className="loading-container"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, yoyo: Infinity }}
+        >
+            <p>Đang tải danh sách món ăn...</p>
+        </motion.div>
+    );
+}
 
     if (error) {
         return (

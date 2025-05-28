@@ -16,15 +16,16 @@ const Home = () => {
 
     // 🔥 Chặn Chrome nếu domain là https://hoxuanhung2802.id.vn
     useEffect(() => {
-        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
-        const isChromeUserAgentData = navigator.userAgentData?.brands?.some(b => b.brand.includes('Chromium') || b.brand.includes('Google Chrome'));
-        const isDomainMatch = window.location.hostname === 'hoxuanhung2802.id.vn';
+    const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent) && !/OPR/.test(navigator.userAgent);
+    const isChromeUserAgentData = navigator.userAgentData?.brands?.some(b => b.brand.includes('Chromium') || b.brand.includes('Google Chrome'));
+    const isDomainMatch = window.location.hostname === 'hoxuanhung2802.id.vn';
 
-        if (isDomainMatch && (isChrome || isChromeUserAgentData)) {
-            alert('Truy cập bằng Chrome không được phép!');
-            window.location.href = 'https://example.com'; // Hoặc chặn bằng cách reload/hiện trang lỗi
-        }
-    }, []);
+    if (isDomainMatch && (isChrome || isChromeUserAgentData)) {
+        alert('Truy cập bằng Chrome không được phép!');
+        window.location.href = 'https://example.com'; // Redirect chặn, có thể đổi URL
+    }
+}, []);
+
 
     useEffect(() => {
         const fetchMeals = async () => {

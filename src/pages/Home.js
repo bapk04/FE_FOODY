@@ -14,6 +14,18 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // 🔥 Chặn Chrome nếu domain là https://hoxuanhung2802.id.vn
+    useEffect(() => {
+        const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
+        const isChromeUserAgentData = navigator.userAgentData?.brands?.some(b => b.brand.includes('Chromium') || b.brand.includes('Google Chrome'));
+        const isDomainMatch = window.location.hostname === 'hoxuanhung2802.id.vn';
+
+        if (isDomainMatch && (isChrome || isChromeUserAgentData)) {
+            alert('Truy cập bằng Chrome không được phép!');
+            window.location.href = 'https://example.com'; // Hoặc chặn bằng cách reload/hiện trang lỗi
+        }
+    }, []);
+
     useEffect(() => {
         const fetchMeals = async () => {
             try {
@@ -32,7 +44,6 @@ const Home = () => {
         fetchMeals();
     }, []);
 
-    // Sử dụng useMemo để tối ưu performance khi filter
     const filteredMeals = useMemo(() => {
         return meals.filter(meal => {
             const matchesSearch = meal.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -55,17 +66,17 @@ const Home = () => {
     };
 
     if (loading) {
-    return (
-        <motion.div 
-            className="loading-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, yoyo: Infinity }}
-        >
-            <p>Đang tải danh sách món ăn...</p>
-        </motion.div>
-    );
-}
+        return (
+            <motion.div 
+                className="loading-container"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, yoyo: Infinity }}
+            >
+                <p>Đang tải danh sách món ăn...</p>
+            </motion.div>
+        );
+    }
 
     if (error) {
         return (

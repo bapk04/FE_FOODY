@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
 
 const CloudflareBlockPage = () => {
   const [showIP, setShowIP] = useState(false);
@@ -24,7 +23,6 @@ const CloudflareBlockPage = () => {
         Please enable cookies.
       </div>
 
-      {/* Main Content */}
       <div className="w-full">
         {/* Header Section */}
         <div className="w-full max-w-5xl mx-auto px-4 pt-8 pb-4">
@@ -34,42 +32,35 @@ const CloudflareBlockPage = () => {
             </h1>
             <h2 className="text-xl lg:text-2xl font-light text-gray-500 mb-8" style={{ fontWeight: 300 }}>
               <span>You are unable to access</span>{' '}
-              <span className="font-normal text-gray-700">hoxuanhung2802.id.vn</span>
+              <span className="font-normal text-gray-700">dotramtrungtruc.id.vn</span>
             </h2>
           </div>
         </div>
 
-        {/* Browser Screenshot Section */}
-        <div className="w-full bg-gray-100 py-12 mb-12" style={{ 
+        {/* Screenshot Container - Full Width Gray Section */}
+        <div className="w-full bg-gray-100 py-8 mb-8" style={{ 
           background: 'linear-gradient(to bottom, #dedede, #ebebeb 3%, #ebebeb 97%, #dedede)',
           borderTop: '1px solid #ddd',
           borderBottom: '1px solid #ddd'
         }}>
-          <div className="max-w-4xl mx-auto px-4">
-            <div className="bg-white rounded-t-lg border border-gray-300 shadow-lg overflow-hidden">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="bg-gradient-to-b from-gray-200 to-gray-100 rounded-t-lg border border-gray-300 max-w-4xl mx-auto relative overflow-hidden shadow-sm">
               {/* Browser Bar */}
-              <div className="h-12 bg-gradient-to-b from-gray-200 to-gray-300 border-b border-gray-300 flex items-center px-4">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <div className="flex-1 mx-4">
-                  <div className="bg-white rounded px-3 py-1 text-sm text-gray-600 flex items-center gap-2">
-                    <Globe size={14} />
-                    <span>hoxuanhung2802.id.vn</span>
-                  </div>
-                </div>
+              <div className="h-14 bg-gradient-to-b from-gray-240 to-gray-220 border-b border-gray-300 relative">
+                <img 
+                  src="https://dotramtrungtruc.id.vn/cdn-cgi/images/browser-bar.png?1376755637"
+                  alt="Browser Bar"
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Error Display */}
-              <div className="h-80 flex flex-col items-center justify-center bg-white px-8">
-                <div className="text-center">
-                  <Shield size={80} className="text-orange-500 mx-auto mb-6" />
-                  <h3 className="text-2xl font-semibold text-gray-800 mb-4">Access Denied</h3>
-                  <p className="text-gray-600 text-lg">This website is protected by Cloudflare</p>
-                  <p className="text-gray-500 text-sm mt-2">Error 1020: Access denied</p>
-                </div>
+              <div className="h-80 flex items-center justify-center bg-white">
+                <img 
+                  src="https://dotramtrungtruc.id.vn/cdn-cgi/images/cf-no-screenshot-error.png"
+                  alt="Cloudflare error screenshot"
+                  className="max-w-full max-h-full object-contain"
+                />
               </div>
             </div>
           </div>

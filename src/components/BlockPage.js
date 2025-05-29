@@ -3,68 +3,8 @@ import { Globe } from 'lucide-react';
 
 const CloudflareBlockPage = () => {
   const [showIP, setShowIP] = useState(false);
-  const [rayId, setRayId] = useState('Loading...');
-  const [userIP, setUserIP] = useState('Loading...');
-
-  // Fetch real user IP and Ray ID
-  useEffect(() => {
-    // Get Ray ID from current page response headers (if available)
-    const getRayId = () => {
-      // Try to get from meta tag or last response
-      const rayMeta = document.querySelector('meta[name="cf-ray"]');
-      if (rayMeta) {
-        return rayMeta.getAttribute('content');
-      }
-      
-      // If not available, make a request to get it
-      fetch(window.location.href)
-        .then(response => {
-          const cfRay = response.headers.get('cf-ray');
-          if (cfRay) {
-            setRayId(cfRay);
-          } else {
-            setRayId('9474f937f913e676-HKG'); // fallback
-          }
-        })
-        .catch(() => {
-          setRayId('9474f937f913e676-HKG'); // fallback
-        });
-    };
-
-    // Get user's real IP
-    const getUserIP = async () => {
-      try {
-        // Try multiple IP services for reliability
-        const ipServices = [
-          'https://api.ipify.org?format=json',
-          'https://ipapi.co/json/',
-          'https://api.ip.sb/geoip'
-        ];
-
-        for (const service of ipServices) {
-          try {
-            const response = await fetch(service);
-            const data = await response.json();
-            const ip = data.ip || data.query;
-            if (ip) {
-              setUserIP(ip);
-              return;
-            }
-          } catch (error) {
-            continue; // Try next service
-          }
-        }
-        
-        // Fallback IP
-        setUserIP('2405:4802:71d3:3230:1516:c1f0:5e36:26b0');
-      } catch (error) {
-        setUserIP('2405:4802:71d3:3230:1516:c1f0:5e36:26b0');
-      }
-    };
-
-    getRayId();
-    getUserIP();
-  }, []);
+  const rayId = '9474c79c8dd5850b';
+  const userIP = '2405:4802:71d3:3230:1516:c1f0:5e36:26b0';
 
   // Thay đổi title của trang
   useEffect(() => {
@@ -119,6 +59,16 @@ const CloudflareBlockPage = () => {
                     <Globe size={14} />
                     <span>hoxuanhung2802.id.vn</span>
                   </div>
+                </div>
+              </div>
+              
+              {/* Error Display */}
+              <div className="h-80 flex flex-col items-center justify-center bg-white px-8">
+                <div className="text-center">
+                  <Shield size={80} className="text-orange-500 mx-auto mb-6" />
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-4">Access Denied</h3>
+                  <p className="text-gray-600 text-lg">This website is protected by Cloudflare</p>
+                  <p className="text-gray-500 text-sm mt-2">Error 1020: Access denied</p>
                 </div>
               </div>
             </div>

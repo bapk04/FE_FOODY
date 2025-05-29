@@ -14,34 +14,6 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // 🔥 Chặn Chrome nếu domain là https://hoxuanhung2802.id.vn
-//     useEffect(() => {
-//     const isDomainMatch = window.location.hostname === 'hoxuanhung2802.id.vn';
-
-//     let isChrome = false;
-
-//     if (navigator.userAgentData?.brands) {
-//         // Lấy danh sách brands từ sec-ch-ua
-//         const brands = navigator.userAgentData.brands.map(b => b.brand.toLowerCase());
-
-//         isChrome = brands.includes('google chrome') || brands.includes('chromium');
-
-//         // Loại bỏ các trình duyệt chromium-based khác
-//         if (brands.includes('microsoft edge') || brands.includes('brave') || brands.includes('opera') || brands.includes('vivaldi')) {
-//             isChrome = false;
-//         }
-//     } else {
-//         // Fallback: kiểm tra userAgent
-//         const ua = navigator.userAgent.toLowerCase();
-//         isChrome = ua.includes('chrome') && !ua.includes('edg') && !ua.includes('opr') && !ua.includes('brave') && !ua.includes('vivaldi');
-//     }
-
-//     if (isDomainMatch && isChrome) {
-//         alert('Truy cập bằng Chrome không được phép!');
-//         window.location.href = 'https://example.com';
-//     }
-// }, []);
-
 
 
     useEffect(() => {

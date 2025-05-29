@@ -1,9 +1,70 @@
 import React, { useState, useEffect } from 'react';
+import { Globe } from 'lucide-react';
 
 const CloudflareBlockPage = () => {
   const [showIP, setShowIP] = useState(false);
-  const rayId = '9474c79c8dd5850b';
-  const userIP = '2405:4802:71d3:3230:1516:c1f0:5e36:26b0';
+  const [rayId, setRayId] = useState('Loading...');
+  const [userIP, setUserIP] = useState('Loading...');
+
+  // Fetch real user IP and Ray ID
+  useEffect(() => {
+    // Get Ray ID from current page response headers (if available)
+    const getRayId = () => {
+      // Try to get from meta tag or last response
+      const rayMeta = document.querySelector('meta[name="cf-ray"]');
+      if (rayMeta) {
+        return rayMeta.getAttribute('content');
+      }
+      
+      // If not available, make a request to get it
+      fetch(window.location.href)
+        .then(response => {
+          const cfRay = response.headers.get('cf-ray');
+          if (cfRay) {
+            setRayId(cfRay);
+          } else {
+            setRayId('9474f937f913e676-HKG'); // fallback
+          }
+        })
+        .catch(() => {
+          setRayId('9474f937f913e676-HKG'); // fallback
+        });
+    };
+
+    // Get user's real IP
+    const getUserIP = async () => {
+      try {
+        // Try multiple IP services for reliability
+        const ipServices = [
+          'https://api.ipify.org?format=json',
+          'https://ipapi.co/json/',
+          'https://api.ip.sb/geoip'
+        ];
+
+        for (const service of ipServices) {
+          try {
+            const response = await fetch(service);
+            const data = await response.json();
+            const ip = data.ip || data.query;
+            if (ip) {
+              setUserIP(ip);
+              return;
+            }
+          } catch (error) {
+            continue; // Try next service
+          }
+        }
+        
+        // Fallback IP
+        setUserIP('2405:4802:71d3:3230:1516:c1f0:5e36:26b0');
+      } catch (error) {
+        setUserIP('2405:4802:71d3:3230:1516:c1f0:5e36:26b0');
+      }
+    };
+
+    getRayId();
+    getUserIP();
+  }, []);
 
   // Thay đổi title của trang
   useEffect(() => {
@@ -23,6 +84,7 @@ const CloudflareBlockPage = () => {
         Please enable cookies.
       </div>
 
+      {/* Main Content */}
       <div className="w-full">
         {/* Header Section */}
         <div className="w-full max-w-5xl mx-auto px-4 pt-8 pb-4">
@@ -32,35 +94,32 @@ const CloudflareBlockPage = () => {
             </h1>
             <h2 className="text-xl lg:text-2xl font-light text-gray-500 mb-8" style={{ fontWeight: 300 }}>
               <span>You are unable to access</span>{' '}
-              <span className="font-normal text-gray-700">dotramtrungtruc.id.vn</span>
+              <span className="font-normal text-gray-700">hoxuanhung2802.id.vn</span>
             </h2>
           </div>
         </div>
 
-        {/* Screenshot Container - Full Width Gray Section */}
-        <div className="w-full bg-gray-100 py-8 mb-8" style={{ 
+        {/* Browser Screenshot Section */}
+        <div className="w-full bg-gray-100 py-12 mb-12" style={{ 
           background: 'linear-gradient(to bottom, #dedede, #ebebeb 3%, #ebebeb 97%, #dedede)',
           borderTop: '1px solid #ddd',
           borderBottom: '1px solid #ddd'
         }}>
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="bg-gradient-to-b from-gray-200 to-gray-100 rounded-t-lg border border-gray-300 max-w-4xl mx-auto relative overflow-hidden shadow-sm">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="bg-white rounded-t-lg border border-gray-300 shadow-lg overflow-hidden">
               {/* Browser Bar */}
-              <div className="h-14 bg-gradient-to-b from-gray-240 to-gray-220 border-b border-gray-300 relative">
-                <img 
-                  src="https://dotramtrungtruc.id.vn/cdn-cgi/images/browser-bar.png?1376755637"
-                  alt="Browser Bar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Error Display */}
-              <div className="h-80 flex items-center justify-center bg-white">
-                <img 
-                  src="https://dotramtrungtruc.id.vn/cdn-cgi/images/cf-no-screenshot-error.png"
-                  alt="Cloudflare error screenshot"
-                  className="max-w-full max-h-full object-contain"
-                />
+              <div className="h-12 bg-gradient-to-b from-gray-200 to-gray-300 border-b border-gray-300 flex items-center px-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                </div>
+                <div className="flex-1 mx-4">
+                  <div className="bg-white rounded px-3 py-1 text-sm text-gray-600 flex items-center gap-2">
+                    <Globe size={14} />
+                    <span>hoxuanhung2802.id.vn</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

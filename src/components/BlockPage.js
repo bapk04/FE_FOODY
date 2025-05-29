@@ -32,7 +32,7 @@ const CloudflareBlockPage = () => {
             </h1>
             <h2 className="text-xl lg:text-2xl font-light text-gray-500 mb-8" style={{ fontWeight: 300 }}>
               <span>You are unable to access</span>{' '}
-              <span className="font-normal text-gray-700">dotramtrungtruc.id.vn</span>
+              <span className="font-normal text-gray-700">hoxuanhung2802.id.vn</span>
             </h2>
           </div>
         </div>

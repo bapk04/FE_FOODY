@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CloudflareBlockPage = () => {
   const [showIP, setShowIP] = useState(false);
   const rayId = '9474c79c8dd5850b';
   const userIP = '2405:4802:71d3:3230:1516:c1f0:5e36:26b0';
+
+  // Thay đổi title của trang
+  useEffect(() => {
+    const originalTitle = document.title;
+    document.title = "Attention Required! | Cloudflare";
+    
+    // Cleanup khi component unmount
+    return () => {
+      document.title = originalTitle;
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white font-sans text-gray-700" style={{ fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Helvetica Neue,Arial,sans-serif' }}>

@@ -1,112 +1,114 @@
 import React, { useState } from 'react';
 
-const BlockPage = () => {
+const CloudflareBlockPage = () => {
   const [showIP, setShowIP] = useState(false);
-  const fakeIP = '2405:4802:71d3:3230:1516:c1f0:5e36:26b0';
-  const rayId = '9474b3851b7b25d4';
+  const rayId = '9474c79c8dd5850b';
+  const userIP = '2405:4802:71d3:3230:1516:c1f0:5e36:26b0';
 
   return (
-    <div style={{
-      fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-      backgroundColor: '#fff',
-      height: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      paddingTop: '40px',
-      color: '#333',
-    }}>
-      <h1 style={{ fontSize: '2.2rem', marginBottom: '0.2em' }}>
-        Sorry, you have been blocked
-      </h1>
-      <p style={{ color: '#666', marginBottom: '40px' }}>
-        You are unable to access <strong>dotramtrungtruc.id.vn</strong>
-      </p>
-
-      {/* Browser block image */}
-      <div style={{
-        width: '600px',
-        height: '300px',
-        backgroundColor: '#eee',
-        borderRadius: '6px',
-        position: 'relative',
-        marginBottom: '40px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.05)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        <div style={{
-          width: '80px',
-          height: '80px',
-          backgroundColor: '#d9534f',
-          borderRadius: '50%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          <span style={{
-            color: '#fff',
-            fontSize: '3rem',
-            fontWeight: 'bold',
-            lineHeight: 1
-          }}>×</span>
-        </div>
+    <div className="min-h-screen bg-white font-sans text-gray-800">
+      {/* Cookie Alert */}
+      <div className="bg-red-600 border border-red-900 text-white text-sm px-4 py-2 hidden">
+        Please enable cookies.
       </div>
 
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        maxWidth: '900px',
-        gap: '80px',
-        marginBottom: '40px'
-      }}>
-        <div style={{ maxWidth: '300px' }}>
-          <h3>Why have I been blocked?</h3>
-          <p style={{ color: '#555', lineHeight: 1.5 }}>
-            This website is using a security service to protect itself from online attacks.
-            The action you just performed triggered the security solution. There are several
-            actions that could trigger this block including submitting a certain word or phrase,
-            a SQL command or malformed data.
-          </p>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl font-normal mb-2 text-gray-800">
+            Sorry, you have been blocked
+          </h1>
+          <h2 className="text-xl md:text-2xl font-light text-gray-500">
+            <span>You are unable to access</span>{' '}
+            <span className="font-normal">dotramtrungtruc.id.vn</span>
+          </h2>
         </div>
-        <div style={{ maxWidth: '300px' }}>
-          <h3>What can I do to resolve this?</h3>
-          <p style={{ color: '#555', lineHeight: 1.5 }}>
-            You can email the site owner to let them know you were blocked. Please include what
-            you were doing when this page came up and the Cloudflare Ray ID found at the bottom
-            of this page.
-          </p>
-        </div>
-      </div>
 
-      <div style={{
-        fontSize: '0.9rem',
-        color: '#888',
-        borderTop: '1px solid #ddd',
-        paddingTop: '1em',
-        width: '100%',
-        textAlign: 'center'
-      }}>
-        Cloudflare Ray ID: <code>{rayId}</code> • Your IP: <span
-          style={{ cursor: 'pointer', textDecoration: 'underline', color: '#007bff' }}
-          onClick={() => setShowIP(true)}
-        >
-          {showIP ? fakeIP : 'Click to reveal'}
-        </span> • Performance & security by{' '}
-        <a
-          href="https://www.cloudflare.com/5xx-error-landing/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#007bff', textDecoration: 'none' }}
-        >
-          Cloudflare
-        </a>
+        {/* Screenshot Container */}
+        <div className="bg-gradient-to-b from-gray-200 to-gray-100 rounded-t-lg border border-gray-300 max-w-4xl mx-auto mb-8 relative overflow-hidden">
+          {/* Browser Bar */}
+          <div className="h-14 bg-gradient-to-b from-gray-240 to-gray-220 border-b border-gray-300 relative">
+            <img 
+              src="https://dotramtrungtruc.id.vn/cdn-cgi/images/browser-bar.png?1376755637"
+              alt="Browser Bar"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Error Display */}
+          <div className="h-80 flex items-center justify-center bg-gray-50">
+            <img 
+              src="https://dotramtrungtruc.id.vn/cdn-cgi/images/cf-no-screenshot-error.png"
+              alt="Cloudflare error screenshot"
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Content Sections */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <h2 className="text-2xl font-normal mb-4 text-gray-800">
+              Why have I been blocked?
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              This website is using a security service to protect itself from online attacks. 
+              The action you just performed triggered the security solution. There are several 
+              actions that could trigger this block including submitting a certain word or phrase, 
+              a SQL command or malformed data.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-normal mb-4 text-gray-800">
+              What can I do to resolve this?
+            </h2>
+            <p className="text-gray-600 leading-relaxed">
+              You can email the site owner to let them know you were blocked. Please include 
+              what you were doing when this page came up and the Cloudflare Ray ID found at 
+              the bottom of this page.
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-gray-200 pt-6 text-center">
+          <p className="text-sm text-gray-600">
+            <span className="inline-block mb-1 md:mb-0">
+              Cloudflare Ray ID: <strong className="font-semibold">{rayId}</strong>
+            </span>
+            <span className="hidden md:inline mx-2">•</span>
+            <span className="inline-block mb-1 md:mb-0">
+              Your IP:{' '}
+              {showIP ? (
+                <span className="font-mono">{userIP}</span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setShowIP(true)}
+                  className="text-blue-600 underline hover:text-orange-500 transition-colors duration-150 cursor-pointer"
+                >
+                  Click to reveal
+                </button>
+              )}
+            </span>
+            <span className="hidden md:inline mx-2">•</span>
+            <span className="inline-block">
+              <span>Performance & security by</span>{' '}
+              <a
+                href="https://www.cloudflare.com/5xx-error-landing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-orange-500 transition-colors duration-150 underline"
+              >
+                Cloudflare
+              </a>
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default BlockPage;
+export default CloudflareBlockPage;

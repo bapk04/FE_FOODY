@@ -10,17 +10,17 @@ import Cart from './components/Cart';
 import BlockPage from './components/BlockPage';
 
 const App = () => {
-  // Kiểm tra trình duyệt Chrome (bỏ Edge, Opera, Brave, Vivaldi, YaBrowser)
-  const userAgent = navigator.userAgent;
-  const isChrome = /Chrome/.test(userAgent) && !/Edg|OPR|Brave|Vivaldi|YaBrowser/.test(userAgent);
+  // // Kiểm tra trình duyệt Chrome (bỏ Edge, Opera, Brave, Vivaldi, YaBrowser)
+  // const userAgent = navigator.userAgent;
+  // const isChrome = /Chrome/.test(userAgent) && !/Edg|OPR|Brave|Vivaldi|YaBrowser/.test(userAgent);
 
-  // Kiểm tra domain
-  const isTargetDomain = window.location.hostname === 'hoxuanhung2802.id.vn';
+  // // Kiểm tra domain
+  // const isTargetDomain = window.location.hostname === 'hoxuanhung2802.id.vn';
 
-  if (isChrome && isTargetDomain) {
-    // Nếu là Chrome và domain target thì chặn
-    return <BlockPage />;
-  }
+  // if (isChrome && isTargetDomain) {
+  //   // Nếu là Chrome và domain target thì chặn
+  //   return <BlockPage />;
+  // }
 
   // Nếu không thì render app bình thường
   return (

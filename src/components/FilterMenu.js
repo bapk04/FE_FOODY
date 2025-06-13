@@ -59,7 +59,7 @@ const FilterMenu = ({ onFilter, selectedCategory, onReset }) => {
                     className={`filter-btn ${!selectedCategory ? 'active' : ''}`}
                     onClick={handleShowAll}
                 >
-                    Tất cả ({categories.reduce((total, cat) => total + (cat.meal_count || 0), 0) || '?'})
+                    Tất cả ({categories.reduce((total, cat) => total + (cat.meal_count || 0), 0) || '30'})
                 </button>
                 
                 {categories.map(category => (

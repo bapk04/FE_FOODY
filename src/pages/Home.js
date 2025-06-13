@@ -76,7 +76,8 @@ if (loading) {
             }}
         >
             <div className="loader"></div>
-           <p>Đầu bếp đang xào nấu dữ liệu, chờ 30s nha &lt;3</p>
+            <h1>Vui lòng chờ 30s nha &lt;3</h1>
+            <p>Đầu bếp đang xào nấu dữ liệu!</p>
         </motion.div>
     );
 }

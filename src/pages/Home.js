@@ -55,18 +55,31 @@ const Home = () => {
         setSearchQuery('');
     };
 
-    if (loading) {
-        return (
-            <motion.div 
-                className="loading-container"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, yoyo: Infinity }}
-            >
-                <p>Đang tải danh sách món ăn...</p>
-            </motion.div>
-        );
-    }
+if (loading) {
+    return (
+        <motion.div 
+            className="loading-container"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ 
+                opacity: 1, 
+                scale: 1,
+                rotate: [0, 360], // Full rotation for a spinning effect
+            }}
+            transition={{ 
+                opacity: { duration: 0.5 },
+                scale: { duration: 0.5 },
+                rotate: { 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                } // Continuous spinning
+            }}
+        >
+            <div className="loader"></div>
+           <p>Đầu bếp đang xào nấu dữ liệu, chờ 30s nha &lt;3</p>
+        </motion.div>
+    );
+}
 
     if (error) {
         return (

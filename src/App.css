@@ -26,8 +26,96 @@ body {
     width: 100%;
 }
 
-/* Loading & Error States */
-.loading-container, .error-container {
+/* loading states */
+/* Home.css (partial, focusing on loading animation) */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    font-family: 'Arial', sans-serif;
+    gap: 1rem;
+}
+
+.loading-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+.loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #e67e22, #f1c40f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loader::before,
+.loader::after {
+    content: '🍔🍕';
+    position: absolute;
+    font-size: 1.5rem;
+    animation: spin 2s linear infinite;
+}
+
+.loader::before {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.loader::after {
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .loader::before,
+    .loader::after {
+        content: '🍴🥄';
+        font-size: 1.8rem;
+    }
+
+    .loading-container p {
+        font-size: 1rem;
+    }
+}
+
+/* Error States */
+
+
+.error-container {
     display: flex;
     flex-direction: column;
     align-items: center;
